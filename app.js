@@ -16,6 +16,8 @@ var items = [
     "Study"
 ];
 
+var workItems = [];
+
 app.get('/', (req, res) => {
 
     var today = new Date();
@@ -29,20 +31,39 @@ app.get('/', (req, res) => {
     var day = today.toLocaleDateString("en-US", options);
 
     res.render("list", {
-        kindOfDay: day, 
+        listTitle: day, 
         newListItems: items
     })
     //res.send('Hola');
 });
 
 app.post("/", (req, res)=> {
-   var item= req.body.newItem;
 
-   items.push(item);
+    var item= req.body.newItem;
 
-    res.redirect("/");
+    if (req.body.list === "Work"){
+        workItems.push(item);
+
+        res.redirect("/work");
+    }else{
+        items.push(item);
+
+        res.redirect("/");
+    }
 })
 
+app.get("/work", (req, res)=> {
+    res.render("list", {
+        listTitle: "Work List",
+        newListItems: workItems
+    })
+})
+
+// app.post("/work", (req, res)=> {
+//     var item = req.body.newItem;
+//     workItems.push(item);
+//     res.redirect("/work");
+// });
 
 app.listen(PORT, ()=>{
     console.log(`Server running on port: http://localhost:${PORT}`);
