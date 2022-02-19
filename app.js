@@ -3,8 +3,16 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = 3000;
+
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+
+var items = [
+    "Study",
+    "Work",
+    "Study"
+];
 
 app.get('/', (req, res) => {
 
@@ -19,10 +27,19 @@ app.get('/', (req, res) => {
     var day = today.toLocaleDateString("en-US", options);
 
     res.render("list", {
-        kindOfDay: day
+        kindOfDay: day, 
+        newListItems: items
     })
     //res.send('Hola');
 });
+
+app.post("/", (req, res)=> {
+   var item= req.body.newItem;
+
+   items.push(item);
+
+    res.redirect("/");
+})
 
 
 app.listen(PORT, ()=>{
