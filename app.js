@@ -11,13 +11,13 @@ app.use(express.static("public"));
 
 app.set('view engine', 'ejs');
 
-let items = [
+const items = [
     "Study",
     "Work",
     "Study"
 ];
 
-let workItems = [];
+const workItems = [];
 
 app.get('/', (req, res) => {
 
