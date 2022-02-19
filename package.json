@@ -11,9 +11,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dikiogres/todolist-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dikiogres/todolist-app/issues"
+  },
+  "homepage": "https://github.com/dikiogres/todolist-app#readme"
 }
